@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Dejting.Models.FriendRequest>
+@{
+    ViewBag.Title = "requestList";
+}
+
+<h2>Acceptera vän</h2>
+
+<table class="table">
+    <tr>
+     
+        <th>
+            Requests
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            <img src="@Url.Action("ProfilBild","Profile", new { id = item.From.Id })" height="50"  />
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.From.UserName)
+        </td>
+   
+        <td>
+            @Html.ActionLink("Acceptera Vän", "AcceptFriend", "Friend", new { id = item.Id }, null)
+            @Html.ActionLink("Ta Bort Förfrågan", "DeclineFriend","Friend", new { id=item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>
